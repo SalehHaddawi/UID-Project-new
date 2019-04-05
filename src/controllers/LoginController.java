@@ -48,5 +48,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private void onMinimize(ActionEvent event) {
+         Lunch.appStage.setIconified(true);
     }
 }
