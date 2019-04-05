@@ -43,11 +43,16 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Lunch.appStage.setScene(scene);
     }
 
     @FXML
     private void onMinimize(ActionEvent event) {
-         Lunch.appStage.setIconified(true);
+        Lunch.appStage.setIconified(true);
     }
 }

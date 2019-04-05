@@ -30,11 +30,10 @@ public class RegisterController implements Initializable {
     @FXML
     private PasswordField confirmPasswordFiled;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+
+    }
 
     @FXML
     private void onClose(ActionEvent event) {
@@ -44,9 +43,9 @@ public class RegisterController implements Initializable {
     @FXML
     private void goToLogin(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
         Lunch.appStage.setScene(scene);
     }
 
@@ -56,7 +55,6 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void onMinimize(ActionEvent event) {
-                 Lunch.appStage.setIconified(true);
-
+        Lunch.appStage.setIconified(true);
     }
 }
