@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+    <stylesheets>
+        <URL value="@/css/login_register.css" />
+    </stylesheets>
+   <children>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="645.0" spacing="20.0" styleClass="white-part" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="USER REGISTER" textFill="#7d7c7d">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="login-textfield">
+                           <children>
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="ENVELOPE_ALT" size="1.8em" />
+                              <TextField fx:id="fullNameTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Full Name" styleClass="transparent">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="160.0" spacing="10.0" styleClass="login-textfield">
+                           <children>
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="ENVELOPE_ALT" size="1.8em" />
+                              <TextField fx:id="emailTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Email Address" styleClass="transparent">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="210.0" spacing="10.0" styleClass="login-textfield">
+                           <children>
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="LOCK" size="1.8em" />
+                              <PasswordField fx:id="passwordFiled" prefHeight="26.0" prefWidth="406.0" promptText="Password" styleClass="transparent">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="317.0" spacing="10.0" styleClass="login-textfield">
+                           <children>
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="LOCK" size="1.8em" />
+                              <PasswordField fx:id="confirmPasswordFiled" prefHeight="26.0" prefWidth="406.0" promptText="Confirm Password" styleClass="transparent">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <BorderPane prefHeight="300.0" prefWidth="445.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <center>
+                              <Button mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Microsoft Sans Serif" size="22.0" />
+                                 </font>
+                              </Button>
+                           </center>
+                        </BorderPane>
+                     </children>
+                     <padding>
+                        <Insets left="100.0" right="100.0" top="50.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="645.0" spacing="10.0" styleClass="gray-white" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="HAVE ACCOUNT?" textFill="#9d9ea1">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="63.0" onMouseClicked="#goToLogin" styleClass="register-label" text="LOGIN" textFill="#9d9ea1" underline="true">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="600.0" prefWidth="355.0" spacing="80.0" styleClass="black-part" HBox.hgrow="NEVER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onClose" styleClass="exit-button" text="×" textFill="WHITE">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <VBox alignment="CENTER" prefHeight="309.0" prefWidth="355.0" spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="200.0" spacing="30.0" styleClass="facboock-button">
+                           <children>
+                              <FontAwesomeIcon fill="WHITE" iconName="FACEBOOK" size="3em" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN WITH FACEBOOK">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="132.0" prefHeight="65.0" prefWidth="200.0" spacing="18.0" styleClass="twitter-button">
+                           <children>
+                              <FontAwesomeIcon fill="WHITE" iconName="TWITTER" size="3em" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN WITH TWITTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="172.0" prefHeight="65.0" prefWidth="200.0" spacing="25.0" styleClass="google-button">
+                           <children>
+                              <FontAwesomeIcon fill="WHITE" iconName="GOOGLE" size="3em" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN WITH GOOGLE+">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="213.0" prefHeight="65.0" prefWidth="200.0" spacing="20.0" styleClass="instagram-button">
+                           <children>
+                              <FontAwesomeIcon fill="WHITE" iconName="INSTAGRAM" size="3em" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN WITH INSTAGRAM">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
