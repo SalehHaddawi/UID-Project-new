@@ -53,4 +53,10 @@ public class RegisterController implements Initializable {
     @FXML
     private void register(ActionEvent event) {
     }
+
+    @FXML
+    private void onMin(ActionEvent event) 
+    {
+        Lunch.appStage.setIconified(true);
+    }
 }
