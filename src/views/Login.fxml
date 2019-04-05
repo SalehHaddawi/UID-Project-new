@@ -105,11 +105,20 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="600.0" prefWidth="355.0" spacing="80.0" styleClass="black-part" HBox.hgrow="NEVER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onClose" styleClass="exit-button" text="×" textFill="WHITE">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Button>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onMinimize" styleClass="exit-button" text="-" textFill="WHITE">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onClose" styleClass="exit-button" text="×" textFill="WHITE">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                   <VBox alignment="CENTER" prefHeight="309.0" prefWidth="355.0" spacing="15.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="200.0" spacing="30.0" styleClass="facboock-button">
