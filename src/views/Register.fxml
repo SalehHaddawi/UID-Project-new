@@ -8,7 +8,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -35,7 +34,7 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="login-textfield">
                            <children>
-                              <FontAwesomeIcon fill="#c1c0c1" iconName="ENVELOPE_ALT" size="1.8em" />
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="USER" size="1.8em" />
                               <TextField fx:id="fullNameTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Full Name" styleClass="transparent">
                                  <font>
                                     <Font size="20.0" />
@@ -105,18 +104,15 @@
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
-                        <BorderPane prefHeight="300.0" prefWidth="445.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <center>
-                              <Button mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER">
                                  <font>
                                     <Font name="Microsoft Sans Serif" size="22.0" />
                                  </font>
                               </Button>
-                           </center>
-                        </BorderPane>
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets left="100.0" right="100.0" top="50.0" />

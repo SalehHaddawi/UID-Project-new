@@ -72,7 +72,7 @@
                         </HBox>
                         <BorderPane prefHeight="300.0" prefWidth="445.0">
                            <left>
-                              <Button mnemonicParsing="false" onAction="#login" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="LOGIN" BorderPane.alignment="CENTER">
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="LOGIN" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Microsoft Sans Serif" size="22.0" />
                                  </font>

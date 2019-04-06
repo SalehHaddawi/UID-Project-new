@@ -68,7 +68,8 @@ public class LoginController implements Initializable {
         
         if(emailTextFiled.getText().isEmpty()){
             emailErrorText.setText("Enter Email");
-            emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
             userIsValid = false;
         }else{
             emailErrorText.setText("");
@@ -77,7 +78,8 @@ public class LoginController implements Initializable {
         
         if(passwordFiled.getText().isEmpty()){
             passowrdErrorText.setText("Enter Password");
-            passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            if(!passwordFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
             userIsValid = false;
         }else{
             passowrdErrorText.setText("");

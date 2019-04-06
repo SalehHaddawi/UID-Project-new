@@ -72,24 +72,54 @@ public class RegisterController implements Initializable {
                 fullNameTextFiled.getParent().getStyleClass().add("login-textfield-error");
             }
             userIsValid = false;
+            fullNameTextFiled.requestFocus();
+        }else if(fullNameTextFiled.getText().length() < 2){
+            fullNameErrorText.setText("2 characters at least");
+            if(!fullNameTextFiled.getParent().getStyleClass().contains("login-textfield-error")){
+                fullNameTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            }
+            fullNameTextFiled.requestFocus();
+            userIsValid = false;
         }else{
             fullNameErrorText.setText("");
             fullNameTextFiled.getParent().getStyleClass().remove("login-textfield-error");
         }
         
+        
         if(emailTextFiled.getText().isEmpty()){
             emailErrorText.setText("Enter Email");
-            emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
             userIsValid = false;
-        }else{
+            emailTextFiled.requestFocus();
+        }else if(!emailTextFiled.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
+            emailErrorText.setText("Invalid Email");
+            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+            emailTextFiled.requestFocus();
+        }/*if(TODO: email is unique){
+            emailErrorText.setText("Email is used");
+            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }*/else{
             emailTextFiled.getParent().getStyleClass().remove("login-textfield-error");
             emailErrorText.setText("");
         }
         
         if(passwordFiled.getText().isEmpty()){
             passwordErrorText.setText("Enter Password");
-            passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            if(!passwordFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
             userIsValid = false;
+            passwordFiled.requestFocus();
+        }else if(passwordFiled.getText().length() < 6){
+            passwordErrorText.setText("6 characters at least");
+            if(!passwordFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+            passwordFiled.requestFocus();
         }else{
             passwordErrorText.setText("");
             passwordFiled.getParent().getStyleClass().remove("login-textfield-error");
@@ -97,8 +127,16 @@ public class RegisterController implements Initializable {
         
         if(confirmPasswordFiled.getText().isEmpty()){
             confirmPasswordErrorText.setText("Enter Password Again");
-            confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
+            if(!confirmPasswordFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
             userIsValid = false;
+            confirmPasswordFiled.requestFocus();
+        }else if(!confirmPasswordFiled.getText().equals(passwordFiled.getText())){
+            confirmPasswordErrorText.setText("Passwords Not match");
+            if(!confirmPasswordFiled.getParent().getStyleClass().contains("login-textfield-error"))
+                confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+            confirmPasswordFiled.requestFocus();
         }else{
             confirmPasswordFiled.getParent().getStyleClass().remove("login-textfield-error");
             confirmPasswordErrorText.setText("");
