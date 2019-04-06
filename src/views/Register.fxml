@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
     <stylesheets>
         <URL value="@/css/login_register.css" />
     </stylesheets>
@@ -41,6 +41,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
+                              <Text fx:id="fullNameErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
@@ -54,6 +59,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
+                              <Text fx:id="emailErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
@@ -67,6 +77,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
+                              <Text fx:id="passwordErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
@@ -80,6 +95,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
+                              <Text fx:id="confirmPasswordErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />

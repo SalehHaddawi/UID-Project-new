@@ -12,8 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.text.Text;
 import lunch.Lunch;
 
 public class LoginController implements Initializable {
@@ -22,6 +21,10 @@ public class LoginController implements Initializable {
     private TextField emailTextFiled;
     @FXML
     private PasswordField passwordFiled;
+    @FXML
+    private Text emailErrorText;
+    @FXML
+    private Text passowrdErrorText;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,15 +47,43 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+        isValidUser();
+        
+        /*if (isValidUser()) {
+            Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 
-        Scene scene = new Scene(root);
+            Scene scene = new Scene(root);
 
-        Lunch.appStage.setScene(scene);
+            Lunch.appStage.setScene(scene);
+        }*/
     }
 
     @FXML
     private void onMinimize(ActionEvent event) {
         Lunch.appStage.setIconified(true);
+    }
+
+    boolean isValidUser() {
+        boolean userIsValid = true;
+        
+        if(emailTextFiled.getText().isEmpty()){
+            emailErrorText.setText("Enter Email");
+            emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }else{
+            emailErrorText.setText("");
+            emailTextFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+        
+        if(passwordFiled.getText().isEmpty()){
+            passowrdErrorText.setText("Enter Password");
+            passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }else{
+            passowrdErrorText.setText("");
+            passwordFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+        
+        return userIsValid;
     }
 }

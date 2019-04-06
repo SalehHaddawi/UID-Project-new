@@ -12,13 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import lunch.Lunch;
 
-/**
- * FXML Controller class
- *
- * @author عبوديالغامدي
- */
 public class RegisterController implements Initializable {
 
     @FXML
@@ -29,6 +25,14 @@ public class RegisterController implements Initializable {
     private PasswordField passwordFiled;
     @FXML
     private PasswordField confirmPasswordFiled;
+    @FXML
+    private Text fullNameErrorText;
+    @FXML
+    private Text emailErrorText;
+    @FXML
+    private Text passwordErrorText;
+    @FXML
+    private Text confirmPasswordErrorText;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,10 +55,55 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void register(ActionEvent event) {
+        isValidUser();
     }
 
     @FXML
     private void onMinimize(ActionEvent event) {
         Lunch.appStage.setIconified(true);
+    }
+    
+    boolean isValidUser() {
+        boolean userIsValid = true;
+        
+        if(fullNameTextFiled.getText().isEmpty()){
+            fullNameErrorText.setText("Enter Name");
+            if(!fullNameTextFiled.getParent().getStyleClass().contains("login-textfield-error")){
+                fullNameTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            }
+            userIsValid = false;
+        }else{
+            fullNameErrorText.setText("");
+            fullNameTextFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+        
+        if(emailTextFiled.getText().isEmpty()){
+            emailErrorText.setText("Enter Email");
+            emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }else{
+            emailTextFiled.getParent().getStyleClass().remove("login-textfield-error");
+            emailErrorText.setText("");
+        }
+        
+        if(passwordFiled.getText().isEmpty()){
+            passwordErrorText.setText("Enter Password");
+            passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }else{
+            passwordErrorText.setText("");
+            passwordFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+        
+        if(confirmPasswordFiled.getText().isEmpty()){
+            confirmPasswordErrorText.setText("Enter Password Again");
+            confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
+            userIsValid = false;
+        }else{
+            confirmPasswordFiled.getParent().getStyleClass().remove("login-textfield-error");
+            confirmPasswordErrorText.setText("");
+        }
+        
+        return userIsValid;
     }
 }
