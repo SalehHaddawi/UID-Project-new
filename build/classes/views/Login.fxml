@@ -42,6 +42,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
+                              <Text fx:id="emailErrorText" fill="#ffbaba" layoutX="402.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
@@ -55,6 +60,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
+                              <Text fx:id="passowrdErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="65.19946217536926">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
@@ -62,7 +72,7 @@
                         </HBox>
                         <BorderPane prefHeight="300.0" prefWidth="445.0">
                            <left>
-                              <Button mnemonicParsing="false" onAction="#login" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="LOGIN" BorderPane.alignment="CENTER">
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="LOGIN" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Microsoft Sans Serif" size="22.0" />
                                  </font>

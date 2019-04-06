@@ -48,10 +48,18 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color: white;
+    -fx-background-color: #2F323E;
     -fx-background-radius: 5em;
 }
 
 .scroll-pane > .corner {
     -fx-background-color: #2F323E;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: white;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
 }

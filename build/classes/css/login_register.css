@@ -75,6 +75,17 @@
     -fx-border-radius: 5px;
 }
 
+.login-textfield-error{
+    -fx-border-color: #FFBABA;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+}
+
+.login-error-message{
+    -fx-fill: #cc0000;
+}
+
 .login-button{
     -fx-background-color: #35D7C3;
     -fx-cursor: hand;
