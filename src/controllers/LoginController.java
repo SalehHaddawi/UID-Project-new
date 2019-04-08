@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import lunch.Lunch;
+import utils.ResizeHelper;
 
 public class LoginController implements Initializable {
 
@@ -46,16 +47,16 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void login(ActionEvent event) throws IOException {
-        isValidUser();
-        
-        /*if (isValidUser()) {
+    private void login(ActionEvent event) throws IOException {        
+        if (isValidUser()) {
             Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 
             Scene scene = new Scene(root);
 
             Lunch.appStage.setScene(scene);
-        }*/
+            
+            ResizeHelper.addResizeListener(Lunch.appStage);
+        }
     }
 
     @FXML

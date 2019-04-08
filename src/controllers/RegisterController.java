@@ -39,6 +39,8 @@ public class RegisterController implements Initializable {
     @FXML
     private Text confirmPasswordErrorText;
 
+    private Node focusNode;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -67,105 +69,96 @@ public class RegisterController implements Initializable {
     private void onMinimize(ActionEvent event) {
         Lunch.appStage.setIconified(true);
     }
-    
+
     boolean isValidUser() {
         boolean userIsValid = true;
-        
-        if(fullNameTextFiled.getText().isEmpty()){
-            fullNameErrorText.setText("Enter Name");
-            if(!fullNameTextFiled.getParent().getStyleClass().contains("login-textfield-error")){
-                fullNameTextFiled.getParent().getStyleClass().add("login-textfield-error");
-            }
+        focusNode = null;
+
+        if (fullNameTextFiled.getText().isEmpty()) {
+
+            showError(fullNameTextFiled, fullNameErrorText, "Enter Name");
+
             userIsValid = false;
-            fullNameTextFiled.requestFocus();
-            animateError(fullNameTextFiled.getParent());
-        }else if(fullNameTextFiled.getText().length() < 2){
-            fullNameErrorText.setText("2 characters at least");
-            if(!fullNameTextFiled.getParent().getStyleClass().contains("login-textfield-error")){
-                fullNameTextFiled.getParent().getStyleClass().add("login-textfield-error");
-            }
-            fullNameTextFiled.requestFocus();
+        } else if (fullNameTextFiled.getText().length() < 2) {
+
+            showError(fullNameTextFiled, fullNameErrorText, "2 characters at least");
+
             userIsValid = false;
-            animateError(fullNameTextFiled.getParent());
-        }else{
+        } else {
             fullNameErrorText.setText("");
             fullNameTextFiled.getParent().getStyleClass().remove("login-textfield-error");
         }
-        
-        
-        if(emailTextFiled.getText().isEmpty()){
-            emailErrorText.setText("Enter Email");
-            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+
+        if (emailTextFiled.getText().isEmpty()) {
+
+            showError(emailTextFiled, emailErrorText, "Enter Email");
+
             userIsValid = false;
-            emailTextFiled.requestFocus();
-            animateError(emailTextFiled.getParent());
-        }else if(!emailTextFiled.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
-            emailErrorText.setText("Invalid Email");
-            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+        } else if (!emailTextFiled.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+            showError(emailTextFiled, emailErrorText, "Invalid Email");
+
             userIsValid = false;
-            emailTextFiled.requestFocus();
-            animateError(emailTextFiled.getParent());
-        }/*if(TODO: email is unique){
-            emailErrorText.setText("Email is used");
-            if(!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
-            userIsValid = false;
-        }*/else{
+        } else {
             emailTextFiled.getParent().getStyleClass().remove("login-textfield-error");
             emailErrorText.setText("");
         }
-        
-        if(passwordFiled.getText().isEmpty()){
-            passwordErrorText.setText("Enter Password");
-            if(!passwordFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+
+        if (passwordFiled.getText().isEmpty()) {
+
+            showError(passwordFiled, passwordErrorText, "Enter Password");
+
             userIsValid = false;
-            passwordFiled.requestFocus();
-            animateError(passwordFiled.getParent());
-        }else if(passwordFiled.getText().length() < 6){
-            passwordErrorText.setText("6 characters at least");
-            if(!passwordFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+        } else if (passwordFiled.getText().length() < 6) {
+
+            showError(passwordFiled, passwordErrorText, "6 characters at least");
+
             userIsValid = false;
-            passwordFiled.requestFocus();
-            animateError(passwordFiled.getParent());
-        }else{
+        } else {
             passwordErrorText.setText("");
             passwordFiled.getParent().getStyleClass().remove("login-textfield-error");
         }
-        
-        if(confirmPasswordFiled.getText().isEmpty()){
-            confirmPasswordErrorText.setText("Enter Password Again");
-            if(!confirmPasswordFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
+
+        if (confirmPasswordFiled.getText().isEmpty()) {
+
+            showError(confirmPasswordFiled, confirmPasswordErrorText, "Enter Password Again");
+
             userIsValid = false;
-            confirmPasswordFiled.requestFocus();
-            animateError(confirmPasswordFiled.getParent());
-        }else if(!confirmPasswordFiled.getText().equals(passwordFiled.getText())){
-            confirmPasswordErrorText.setText("Passwords Not match");
-            if(!confirmPasswordFiled.getParent().getStyleClass().contains("login-textfield-error"))
-                confirmPasswordFiled.getParent().getStyleClass().add("login-textfield-error");
+        } else if (!confirmPasswordFiled.getText().equals(passwordFiled.getText())) {
+
+            showError(confirmPasswordFiled, confirmPasswordErrorText, "Passwords Not match");
+
             userIsValid = false;
-            confirmPasswordFiled.requestFocus();
-            animateError(confirmPasswordFiled.getParent());
-        }else{
+        } else {
             confirmPasswordFiled.getParent().getStyleClass().remove("login-textfield-error");
             confirmPasswordErrorText.setText("");
         }
-        
+
         return userIsValid;
     }
-    
-    void animateError(Node node){
+
+    void showError(TextField textField, Text errorText, String errorMessage) {
+        if (!textField.getParent().getStyleClass().contains("login-textfield-error")) {
+            textField.getParent().getStyleClass().add("login-textfield-error");
+        }
+
+        errorText.setText(errorMessage);
+
+        animateError(textField.getParent());
+
+        if (focusNode == null) {
+            focusNode = textField;
+            focusNode.requestFocus();
+        }   
+    }
+
+    void animateError(Node node) {
         Timeline animationTimeline = new Timeline();
         KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(0.1), new KeyValue(node.translateXProperty(), 10));
         KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(0.2), new KeyValue(node.translateXProperty(), -10));
         KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(0.3), new KeyValue(node.translateXProperty(), 5));
         KeyFrame keyFrame4 = new KeyFrame(Duration.seconds(0.4), new KeyValue(node.translateXProperty(), -5));
         KeyFrame keyFrame5 = new KeyFrame(Duration.seconds(0.5), new KeyValue(node.translateXProperty(), 0));
-        animationTimeline.getKeyFrames().addAll(keyFrame1,keyFrame2,keyFrame3,keyFrame4,keyFrame5);
+        animationTimeline.getKeyFrames().addAll(keyFrame1, keyFrame2, keyFrame3, keyFrame4, keyFrame5);
         animationTimeline.play();
     }
 }

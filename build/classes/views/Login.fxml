@@ -37,7 +37,7 @@
                         <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="login-textfield">
                            <children>
                               <FontAwesomeIcon fill="#c1c0c1" iconName="ENVELOPE_ALT" size="1.8em" />
-                              <TextField fx:id="emailTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Email Address" styleClass="transparent">
+                              <TextField fx:id="emailTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Email Address" styleClass="transparent" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -55,7 +55,7 @@
                         <HBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="210.0" spacing="10.0" styleClass="login-textfield">
                            <children>
                               <FontAwesomeIcon fill="#c1c0c1" iconName="LOCK" size="1.8em" />
-                              <PasswordField fx:id="passwordFiled" prefHeight="26.0" prefWidth="406.0" promptText="Password" styleClass="transparent">
+                              <PasswordField fx:id="passwordFiled" prefHeight="26.0" prefWidth="406.0" promptText="Password" styleClass="transparent" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
