@@ -8,13 +8,12 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
     <stylesheets>
         <URL value="@/css/login_register.css" />
     </stylesheets>
@@ -35,12 +34,17 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="login-textfield">
                            <children>
-                              <FontAwesomeIcon fill="#c1c0c1" iconName="ENVELOPE_ALT" size="1.8em" />
+                              <FontAwesomeIcon fill="#c1c0c1" iconName="USER" size="1.8em" />
                               <TextField fx:id="fullNameTextFiled" prefHeight="26.0" prefWidth="454.0" promptText="Full Name" styleClass="transparent">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
+                              <Text fx:id="fullNameErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
@@ -54,6 +58,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
+                              <Text fx:id="emailErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
@@ -67,6 +76,11 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
+                              <Text fx:id="passwordErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
@@ -80,23 +94,25 @@
                                     <Font size="20.0" />
                                  </font>
                               </PasswordField>
+                              <Text fx:id="confirmPasswordErrorText" fill="#ffbaba" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-error-message" textAlignment="CENTER" wrappingWidth="73.73281860351562">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
-                        <BorderPane prefHeight="300.0" prefWidth="445.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <center>
-                              <Button mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER">
                                  <font>
                                     <Font name="Microsoft Sans Serif" size="22.0" />
                                  </font>
                               </Button>
-                           </center>
-                        </BorderPane>
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets left="100.0" right="100.0" top="50.0" />

@@ -1,359 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox alignment="TOP_CENTER" prefHeight="693.0" prefWidth="891.0" spacing="75.0">
-         <padding>
-            <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DiscoverController">
+   <children>
+      <StackPane prefHeight="817.0" prefWidth="895.0">
          <children>
-            <VBox minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0">
+               <content>
+                  <VBox fx:id="categoriesVBox" alignment="TOP_CENTER" prefHeight="813.0" prefWidth="891.0" spacing="75.0">
+                     <padding>
+                        <Insets bottom="50.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <VBox fx:id="choosenImageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="895.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
+                        <JFXButton buttonType="RAISED" onAction="#closeChoosenImage" ripplerFill="#646464" style="-fx-background-color: #35D7C3;" text="×">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="choosenImageView" fitHeight="660.0" fitWidth="880.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="726.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton buttonType="RAISED" onAction="#addImageToMyWallappers" ripplerFill="#646464" style="-fx-background-color: #35D7C3;" text="Add">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </HBox>
                </children>
+               <effect>
+                  <DropShadow />
+               </effect>
             </VBox>
-            <VBox layoutX="20.0" layoutY="20.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="346.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="672.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="997.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="1323.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox layoutX="20.0" layoutY="1648.0" minHeight="250.0" prefHeight="250.0" prefWidth="100.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
-                     <children>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                        <ImageView fitHeight="198.0" fitWidth="200.0" layoutX="450.0" layoutY="10.0" pickOnBounds="true" styleClass="wallpaper">
-                           <image>
-                              <Image url="@../images/download.jpg" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="ONE_PASS_BOX" />
-                           </effect>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <JFXSpinner fx:id="spinner" radius="100.0" visible="false" />
          </children>
-      </VBox>
-   </content>
-</ScrollPane>
+      </StackPane>
+   </children>
+</AnchorPane>

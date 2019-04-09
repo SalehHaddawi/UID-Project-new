@@ -1,5 +1,6 @@
 package controllers;
 
+import com.jfoenix.controls.JFXDecorator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,9 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lunch.Lunch;
+import utils.ResizeHelper;
 
 public class LoginController implements Initializable {
 
@@ -22,6 +25,10 @@ public class LoginController implements Initializable {
     private TextField emailTextFiled;
     @FXML
     private PasswordField passwordFiled;
+    @FXML
+    private Text emailErrorText;
+    @FXML
+    private Text passowrdErrorText;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,22 +44,65 @@ public class LoginController implements Initializable {
     private void goToRegister(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
 
-        Scene scene = new Scene(root);
+        JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
+        decorator.setCustomMaximize(true);
+
+        Scene scene = new Scene(decorator);
 
         Lunch.appStage.setScene(scene);
     }
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+        if (isValidUser()) {
+            Lunch.appStage.close();
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 
-        Scene scene = new Scene(root);
+            Lunch.appStage = new Stage();
+            
+            JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
 
-        Lunch.appStage.setScene(scene);
+            Scene scene = new Scene(decorator);
+
+            
+            Lunch.appStage.setScene(scene);
+            Lunch.appStage.show();
+
+            ResizeHelper.addResizeListener(Lunch.appStage);
+        }
     }
 
     @FXML
     private void onMinimize(ActionEvent event) {
         Lunch.appStage.setIconified(true);
+    }
+
+    boolean isValidUser() {
+        boolean userIsValid = true;
+
+        if (emailTextFiled.getText().isEmpty()) {
+            emailErrorText.setText("Enter Email");
+            if (!emailTextFiled.getParent().getStyleClass().contains("login-textfield-error")) {
+                emailTextFiled.getParent().getStyleClass().add("login-textfield-error");
+            }
+            userIsValid = false;
+        } else {
+            emailErrorText.setText("");
+            emailTextFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+
+        if (passwordFiled.getText().isEmpty()) {
+            passowrdErrorText.setText("Enter Password");
+            if (!passwordFiled.getParent().getStyleClass().contains("login-textfield-error")) {
+                passwordFiled.getParent().getStyleClass().add("login-textfield-error");
+            }
+            userIsValid = false;
+        } else {
+            passowrdErrorText.setText("");
+            passwordFiled.getParent().getStyleClass().remove("login-textfield-error");
+        }
+
+        return userIsValid;
     }
 }
