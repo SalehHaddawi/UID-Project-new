@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class WallpaperController implements Initializable {
@@ -23,12 +24,21 @@ public class WallpaperController implements Initializable {
 
     String imageURL;
     String imageURLThumbnail;
+    
+    VBox choosenImageVBox;
+    JFXSpinner choosenImageSpinner;
+    ImageView choosenImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    public void intit() {
+    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
+        this.choosenImageVBox = choosenImageVBox;
+        this.choosenImageSpinner = choosenImageSpinner;
+        this.choosenImageView = choosenImageView;
+        
+        
         Image image = new Image(imageURLThumbnail, 200, 200, false, true, true);
 
         imageView.setImage(image);
@@ -50,27 +60,39 @@ public class WallpaperController implements Initializable {
 
     @FXML
     private void showChoosenImage(MouseEvent event) {
-        AppData.choosenImageVBox.setVisible(true);
-        AppData.choosenImagSpinner.setVisible(true);
+        choosenImageVBox.setVisible(true);
+        choosenImageSpinner.setVisible(true);
+        
+        AppData.choosenImageURL = imageURL;
 
         Image img = new Image(imageURL, true);
 
         img.progressProperty().addListener((obs, oldV, newV) -> {
             if ((Double) newV == 1) {
-                AppData.choosenImagSpinner.setVisible(false);
-                Timeline timeline = new Timeline();
+                choosenImageSpinner.setVisible(false);
+                
+                Timeline timeline = new Timeline(); 
 
-                AppData.choosenImageView.setScaleX(0);
-                AppData.choosenImageView.setScaleY(0);
+                choosenImageView.setScaleX(0);
+                choosenImageView.setScaleY(0);
 
-                KeyFrame key1 = new KeyFrame(Duration.seconds(0.3), new KeyValue(AppData.choosenImageView.scaleXProperty(), 1));
-                KeyFrame key2 = new KeyFrame(Duration.seconds(0.3), new KeyValue(AppData.choosenImageView.scaleYProperty(), 1));
+                KeyFrame key1 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleXProperty(), 1));
+                KeyFrame key2 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleYProperty(), 1));
 
                 timeline.getKeyFrames().addAll(key1, key2);
                 timeline.play();
             }
         });
+        
+        img.errorProperty().addListener((obs, oldV, newV) -> {
+            if(newV){ // something wrong happened
+                choosenImageSpinner.setVisible(false);
+                choosenImageView.setImage(imageView.getImage());
+                
+                System.out.println("something wrong happened");
+            }
+        });
 
-        AppData.choosenImageView.setImage(img);
-    }
+        choosenImageView.setImage(img);
+    }    
 }

@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lunch.Lunch;
 import utils.ResizeHelper;
 
@@ -44,10 +43,10 @@ public class LoginController implements Initializable {
     private void goToRegister(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
 
-        JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
-        decorator.setCustomMaximize(true);
+        //JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
+        //decorator.setCustomMaximize(true);
 
-        Scene scene = new Scene(decorator);
+        Scene scene = new Scene(root);
 
         Lunch.appStage.setScene(scene);
     }

@@ -2,6 +2,7 @@ package controllers;
 
 import Threading.NotifyingRunnable;
 import Threading.ThreadCompleteListener;
+import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -11,9 +12,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import utils.GoogleImagesSearch;
+import utils.GoogleImages;
 
 public class DiscoverImagesLineController implements Initializable {
 
@@ -25,17 +28,19 @@ public class DiscoverImagesLineController implements Initializable {
     List<String> imagesURLs;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {}
+    
+    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView){
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
-                imagesURLs = GoogleImagesSearch.search(categoryText.getText() + "Wallpaper", 4, true);
+                imagesURLs = GoogleImages.search(categoryText.getText() + "Wallpaper", 4, true);
             }
         };
 
         ThreadCompleteListener completeListener = (Runnable runnable) -> {
             Platform.runLater(() -> {
-                createWallpapers();
+                createWallpapers(choosenImageVBox, choosenImageSpinner, choosenImageView);
             });
         };
 
@@ -45,7 +50,7 @@ public class DiscoverImagesLineController implements Initializable {
         loadingURLs.start();
     }
 
-    void createWallpapers() {
+    private void createWallpapers(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
         try {
             for (int i = 0; i < 4 * 2; i += 2) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Wallpaper.fxml"));
@@ -58,7 +63,7 @@ public class DiscoverImagesLineController implements Initializable {
 
                 w.setImageURLThumbnail(imagesURLs.get(i + 1));
 
-                w.intit();
+                w.init(choosenImageVBox, choosenImageSpinner, choosenImageView);
 
                 discoverLineHBox.getChildren().add(root);
             }
