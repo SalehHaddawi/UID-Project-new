@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1250.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+    <stylesheets>
+        <URL value="@/css/main.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="860.0" prefWidth="1249.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="799.0" prefWidth="328.0" spacing="25.0" styleClass="black-part">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/profile.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect></ImageView>
+                        <Button layoutX="10.0" layoutY="260.0" mnemonicParsing="false" onAction="#goToMyWallpapers" prefHeight="80.0" prefWidth="350.0" styleClass="transparent" text="My Wallpapers" textFill="WHITE">
+                           <font>
+                              <Font name="Harrington" size="40.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#goToDiscover" prefHeight="80.0" prefWidth="350.0" styleClass="transparent" text="Discover" textFill="WHITE">
+                           <font>
+                              <Font name="Harrington" size="40.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="10.0" layoutY="495.0" mnemonicParsing="false" onAction="#goToSearch" prefHeight="80.0" prefWidth="350.0" styleClass="transparent" text="Search" textFill="WHITE">
+                           <font>
+                              <Font name="Harrington" size="40.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#goToOptions" prefHeight="80.0" prefWidth="350.0" styleClass="transparent" text="Options" textFill="WHITE">
+                           <font>
+                              <Font name="Harrington" size="40.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="300.0" styleClass="white-part" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <VBox fx:id="mainVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </VBox>
+   </children>
+</AnchorPane>
