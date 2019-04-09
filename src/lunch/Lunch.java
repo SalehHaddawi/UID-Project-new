@@ -1,5 +1,6 @@
 package lunch;
 
+import Model.AppData;
 import utils.ResizeHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,10 @@ public class Lunch extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        AppData.loadImagesCategories();
+        
+        System.out.println("Found " + AppData.categories.size() + " image Categories");
+        
         Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 
         Scene scene = new Scene(root);
