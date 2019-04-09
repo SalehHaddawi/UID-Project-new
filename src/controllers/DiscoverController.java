@@ -2,9 +2,14 @@ package controllers;
 
 import Model.AppData;
 import com.jfoenix.controls.JFXSpinner;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +22,6 @@ public class DiscoverController implements Initializable {
 
     @FXML
     private VBox categoriesVBox;
-
-    String[] cats = {"GALAXY", "Football", "Snow", "Lightning", "Animals", "Basketball", "Curry", "Storms", "Volcano", "Lord Of The Rings"};
     @FXML
     private VBox choosenImageVBox;
     @FXML
@@ -26,25 +29,29 @@ public class DiscoverController implements Initializable {
     @FXML
     private JFXSpinner spinner;
 
+    List<String> cats = AppData.categories;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadImagesLines();
+        Collections.shuffle(cats);
         
+        loadImagesLines();
+
         AppData.choosenImageVBox = choosenImageVBox;
         AppData.choosenImageView = choosenImageView;
-        AppData.choosenImagSpinner = spinner;
+        AppData.choosenImagSpinner = spinner;        
     }
 
     void loadImagesLines() {
         try {
-            for (String s : cats) {
+            for (int i = 0; i < 20; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DiscoverImagesLine.fxml"));
 
                 Parent root = loader.load();
 
                 DiscoverImagesLineController d = loader.<DiscoverImagesLineController>getController();
 
-                d.setCategory(s);
+                d.setCategory(cats.get(i));
 
                 categoriesVBox.getChildren().add(root);
             }
@@ -60,5 +67,16 @@ public class DiscoverController implements Initializable {
 
     @FXML
     private void addImageToMyWallappers(ActionEvent event) {
+    }
+
+    void loadCategories() {
+        try {
+            Scanner scanner = new Scanner(new File("src/categories/Images Categories.txt"));
+            while (scanner.hasNextLine()) {
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

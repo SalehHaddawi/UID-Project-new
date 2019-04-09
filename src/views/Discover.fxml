@@ -39,7 +39,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <ImageView fx:id="choosenImageView" fitHeight="426.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="choosenImageView" fitHeight="660.0" fitWidth="880.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="726.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <JFXButton buttonType="RAISED" onAction="#addImageToMyWallappers" ripplerFill="#646464" style="-fx-background-color: #35D7C3;" text="Add">

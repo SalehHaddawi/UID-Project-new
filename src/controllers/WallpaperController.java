@@ -21,54 +21,56 @@ public class WallpaperController implements Initializable {
     @FXML
     private JFXSpinner spinner;
 
-    String imageURl;
+    String imageURL;
+    String imageURLThumbnail;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     public void intit() {
-        Image image = new Image(imageURl, 200, 200, false, true, true);
+        Image image = new Image(imageURLThumbnail, 200, 200, false, true, true);
 
         imageView.setImage(image);
 
         image.progressProperty().addListener((obs, oldV, newV) -> {
-            if((Double) newV == 1){
+            if ((Double) newV == 1) {
                 spinner.setVisible(false);
             }
         });
     }
 
     public void setImageURL(String url) {
-        this.imageURl = url;
+        this.imageURL = url;
+    }
+
+    public void setImageURLThumbnail(String imageURLThumbnail) {
+        this.imageURLThumbnail = imageURLThumbnail;
     }
 
     @FXML
     private void showChoosenImage(MouseEvent event) {
         AppData.choosenImageVBox.setVisible(true);
         AppData.choosenImagSpinner.setVisible(true);
-        
-        Image img = new Image(imageURl,true);
-        
+
+        Image img = new Image(imageURL, true);
+
         img.progressProperty().addListener((obs, oldV, newV) -> {
-            if((Double) newV == 1){
+            if ((Double) newV == 1) {
                 AppData.choosenImagSpinner.setVisible(false);
                 Timeline timeline = new Timeline();
-                
+
                 AppData.choosenImageView.setScaleX(0);
                 AppData.choosenImageView.setScaleY(0);
-                
+
                 KeyFrame key1 = new KeyFrame(Duration.seconds(0.3), new KeyValue(AppData.choosenImageView.scaleXProperty(), 1));
                 KeyFrame key2 = new KeyFrame(Duration.seconds(0.3), new KeyValue(AppData.choosenImageView.scaleYProperty(), 1));
-                
-                timeline.getKeyFrames().addAll(key1,key2);
+
+                timeline.getKeyFrames().addAll(key1, key2);
                 timeline.play();
             }
         });
-        
-        img.errorProperty().addListener((obs, oldV, newV) -> {
-            
-        });
-        
+
         AppData.choosenImageView.setImage(img);
     }
 }

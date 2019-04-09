@@ -23,41 +23,43 @@ public class DiscoverImagesLineController implements Initializable {
     private HBox discoverLineHBox;
 
     List<String> imagesURLs;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
-                imagesURLs = GoogleImagesSearch.search(categoryText.getText() + "Wallpaper", 4);
+                imagesURLs = GoogleImagesSearch.search(categoryText.getText() + "Wallpaper", 4, true);
             }
         };
-        
+
         ThreadCompleteListener completeListener = (Runnable runnable) -> {
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 createWallpapers();
             });
         };
-        
+
         run.addListener(completeListener);
-        
+
         Thread loadingURLs = new Thread(run);
         loadingURLs.start();
     }
 
     void createWallpapers() {
         try {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4 * 2; i += 2) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Wallpaper.fxml"));
 
                 Parent root = loader.load();
 
                 WallpaperController w = loader.<WallpaperController>getController();
-                
+
                 w.setImageURL(imagesURLs.get(i));
-                
+
+                w.setImageURLThumbnail(imagesURLs.get(i + 1));
+
                 w.intit();
-                
+
                 discoverLineHBox.getChildren().add(root);
             }
         } catch (IOException e) {
