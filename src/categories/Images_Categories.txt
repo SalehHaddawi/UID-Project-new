@@ -16,7 +16,6 @@ Cloisters
 Columns 
 Corridors 
 Courtyards 
-Crosses 
 Decorative Pools 
 Domes 
 Doors 
@@ -339,11 +338,6 @@ Sculptures
 Totem Poles 
 Weapons 
 Wrecks 
-Religion 
-Buddhism 
-Buddha Statues 
-Buddhist Caves 
-Buddhist Monks 
 Gompas 
 Mahayana Buddhist Temples 
 Misc Buddhist Statues 
@@ -358,12 +352,6 @@ Hinduism
 Islam 
 Islamic Monuments 
 Mosques 
-Muslim Cemeteries 
-Muslim People 
-Judaism 
-Polynesian Religions 
-Shintoism 
-Traditional Asian Religions 
 Transportation 
 Small Planes 
 ATVs 
@@ -786,7 +774,6 @@ Crowds
 Daily Activities 
 People Buying and Selling 
 People Carrying Things 
-People Celebrating 
 People Doing Agricultural Work 
 People Eating 
 People Looking 
@@ -799,8 +786,6 @@ People Walking and Strolling
 People Working 
 Families 
 People in the distance 
-Men 
-Monks and Priests 
 Outdoor Recreation 
 Backpacking 
 Bathing and Swimming 
@@ -822,11 +807,9 @@ Beach
 Bikes & Motorcycle
 Brands
 Unsplash
-
 Buildings And Architecture
 Cars
 Cartoon - Anime
-Celebrity
 Creative Wallpapers
 Cute Wallpapers
 Food and drink

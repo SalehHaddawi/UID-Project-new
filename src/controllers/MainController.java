@@ -47,7 +47,10 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void goToSearch(ActionEvent event) {
+    private void goToSearch(ActionEvent event) throws IOException {
+        mainVBox.getChildren().clear();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Search.fxml"));
+        mainVBox.getChildren().add(root);
     }
 
     @FXML

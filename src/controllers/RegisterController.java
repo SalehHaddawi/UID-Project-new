@@ -153,12 +153,12 @@ public class RegisterController implements Initializable {
 
     void animateError(Node node) {
         Timeline animationTimeline = new Timeline();
-        KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(0.1), new KeyValue(node.translateXProperty(), 10));
-        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(0.2), new KeyValue(node.translateXProperty(), -10));
-        KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(0.3), new KeyValue(node.translateXProperty(), 5));
-        KeyFrame keyFrame4 = new KeyFrame(Duration.seconds(0.4), new KeyValue(node.translateXProperty(), -5));
-        KeyFrame keyFrame5 = new KeyFrame(Duration.seconds(0.5), new KeyValue(node.translateXProperty(), 0));
-        animationTimeline.getKeyFrames().addAll(keyFrame1, keyFrame2, keyFrame3, keyFrame4, keyFrame5);
+        KeyFrame key1 = new KeyFrame(Duration.seconds(0.1), new KeyValue(node.translateXProperty(), 10));
+        KeyFrame key2 = new KeyFrame(Duration.seconds(0.2), new KeyValue(node.translateXProperty(), -10));
+        KeyFrame key3 = new KeyFrame(Duration.seconds(0.3), new KeyValue(node.translateXProperty(), 5));
+        KeyFrame key4 = new KeyFrame(Duration.seconds(0.4), new KeyValue(node.translateXProperty(), -5));
+        KeyFrame key5 = new KeyFrame(Duration.seconds(0.5), new KeyValue(node.translateXProperty(), 0));
+        animationTimeline.getKeyFrames().addAll(key1, key2, key3, key4, key5);
         animationTimeline.play();
     }
 }

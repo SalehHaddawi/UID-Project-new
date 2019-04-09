@@ -1,5 +1,6 @@
 package controllers;
 
+import Model.AppData;
 import Threading.NotifyingRunnable;
 import Threading.ThreadCompleteListener;
 import com.jfoenix.controls.JFXSpinner;
@@ -8,39 +9,50 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import utils.GoogleImages;
 
-public class DiscoverImagesLineController implements Initializable {
+public class SearchController implements Initializable {
 
     @FXML
-    private Text categoryText;
+    private TextField searchTextField;
     @FXML
-    private HBox discoverLineHBox;
-
+    private TilePane wallpapersTilePane;
+    @FXML
+    private VBox choosenImageVBox;
+    @FXML
+    private ImageView choosenImageView;
+    @FXML
+    private JFXSpinner spinner;
+    
     List<String> imagesURLs;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
-    
-    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView){
+    public void initialize(URL url, ResourceBundle rb) {
+    }        
+
+    @FXML
+    private void onSearch(ActionEvent event) {
+        wallpapersTilePane.getChildren().clear();
+        
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
-                imagesURLs = GoogleImages.search(categoryText.getText() + "Wallpaper", 4, true);
+                imagesURLs = GoogleImages.search(searchTextField.getText() , 20, true);
             }
         };
 
         ThreadCompleteListener completeListener = (Runnable runnable) -> {
             Platform.runLater(() -> {
-                createWallpapers(choosenImageVBox, choosenImageSpinner, choosenImageView);
+                createWallpapers(choosenImageVBox,spinner,choosenImageView);
             });
         };
 
@@ -49,10 +61,10 @@ public class DiscoverImagesLineController implements Initializable {
         Thread loadingURLs = new Thread(run);
         loadingURLs.start();
     }
-
+    
     private void createWallpapers(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
         try {
-            for (int i = 0; i < 4 * 2; i += 2) {
+            for (int i = 0; i < imagesURLs.size(); i += 2) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Wallpaper.fxml"));
 
                 Parent root = loader.load();
@@ -65,18 +77,20 @@ public class DiscoverImagesLineController implements Initializable {
 
                 w.init(choosenImageVBox, choosenImageSpinner, choosenImageView);
 
-                discoverLineHBox.getChildren().add(root);
+                wallpapersTilePane.getChildren().add(root);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setCategory(String cat) {
-        categoryText.setText(cat);
+    @FXML
+    private void closeChoosenImage(ActionEvent event) {
+        choosenImageVBox.setVisible(false);
     }
 
-    public void setImagesURLs(List<String> urls) {
-        this.imagesURLs = urls;
+    @FXML
+    private void addImageToMyWallappers(ActionEvent event) {
+         AppData.userURLs.add(AppData.choosenImageURL);
     }
 }
