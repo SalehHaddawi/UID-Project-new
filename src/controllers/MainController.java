@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import lunch.Lunch;
+import utils.Toast;
 
 public class MainController implements Initializable {
 

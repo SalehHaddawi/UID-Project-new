@@ -4,9 +4,7 @@ import Model.AppData;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,7 +17,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import lunch.Lunch;
 import utils.ImagesUtils;
+import utils.Toast;
 
 public class DiscoverController implements Initializable {
 
@@ -83,13 +83,15 @@ public class DiscoverController implements Initializable {
             categoriesVBox.getChildren().remove(noInternetImageView);
             loadImagesLines();
         }else{
+            Toast.makeText(Lunch.appStage, "Please Check Your Internet Connection", 1500);
+            
             loadMoreButton.setText("Try Agian");
         }
     }
 
     private void loadImagesLines() {
         loadMoreButton.setText("Load More");
-        
+                
         try {
             int i;
             for (i = offset; i < limit; i++) {

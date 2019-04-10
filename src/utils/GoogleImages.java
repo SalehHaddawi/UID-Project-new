@@ -13,7 +13,7 @@ public class GoogleImages {
         File pythonFile = new File("src/executable/google_images_download.exe");
         Runtime runtime = Runtime.getRuntime();
         try {
-            Process p = runtime.exec(pythonFile.getAbsolutePath() + " --keywords \"" + keyword + "\" --safe_search --limit " + limit + (thumbnail ? " --thumbnail" : "") + " --no_download");
+            Process p = runtime.exec(pythonFile.getAbsolutePath() + " --keywords \"" + keyword + "\" --safe_search --limit " + limit + (thumbnail ? " --thumbnail" : "") + " --no_download --no_directory");
 
             BufferedReader bre = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
@@ -40,7 +40,7 @@ public class GoogleImages {
         File pythonFile = new File("src/executable/google_images_download.exe");
         Runtime runtime = Runtime.getRuntime();
         try {
-            Process p = runtime.exec(pythonFile.getAbsolutePath() + " --keywords \"" + keyword + "\" --safe_search --limit " + limit + " --offset " + offset +(thumbnail ? " --thumbnail" : "") + " --no_download");
+            Process p = runtime.exec(pythonFile.getAbsolutePath() + " --keywords \"" + keyword + "\" --safe_search --limit " + limit + " --offset " + offset +(thumbnail ? " --thumbnail" : "") + " --no_download --no_directory");
 
             BufferedReader bre = new BufferedReader(new InputStreamReader(p.getInputStream()));
 

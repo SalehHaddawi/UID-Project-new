@@ -5,12 +5,8 @@ import Threading.NotifyingRunnable;
 import Threading.ThreadCompleteListener;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
-import impl.org.controlsfx.autocompletion.SuggestionProvider;
-import impl.org.controlsfx.skin.AutoCompletePopup;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,14 +18,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import lunch.Lunch;
 import org.controlsfx.control.textfield.TextFields;
 import utils.GoogleImages;
 import utils.ImagesUtils;
+import utils.Toast;
 
 public class SearchController implements Initializable {
 
@@ -87,6 +84,9 @@ public class SearchController implements Initializable {
         if (!ImagesUtils.isNetAvailable()) {
             noInternetImageView.setVisible(true);
             noResultFound.setVisible(false);
+            
+            Toast.makeText(Lunch.appStage, "Please Check Your Internet Connection", 1500);
+            
             return;
         } else {
             noInternetImageView.setVisible(false);
