@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,9 +14,12 @@
             <Font size="40.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="10.0" left="10.0" />
          </VBox.margin>
       </Text>
-      <HBox fx:id="discoverLineHBox" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="870.0" spacing="20.0" />
+      <HBox fx:id="discoverLineHBox" alignment="CENTER" prefHeight="200.0" prefWidth="870.0" spacing="20.0">
+         <children>
+            <JFXSpinner fx:id="spinner" radius="50.0" />
+         </children></HBox>
    </children>
 </VBox>

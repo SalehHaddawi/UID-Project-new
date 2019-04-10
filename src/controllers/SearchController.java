@@ -34,6 +34,7 @@ public class SearchController implements Initializable {
     private JFXSpinner spinner;
     
     List<String> imagesURLs;
+    int searchLimit = 100;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,7 +47,7 @@ public class SearchController implements Initializable {
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
-                imagesURLs = GoogleImages.search(searchTextField.getText() , 20, true);
+                imagesURLs = GoogleImages.search(searchTextField.getText() , searchLimit, true);
             }
         };
 

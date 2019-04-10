@@ -16,19 +16,19 @@
 
 <VBox xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchController">
    <children>
-      <StackPane>
+      <StackPane VBox.vgrow="ALWAYS">
          <children>
-            <VBox>
+            <VBox spacing="10.0">
                <children>
-                  <HBox>
+                  <HBox spacing="20.0" VBox.vgrow="NEVER">
                      <children>
-                        <TextField fx:id="searchTextField" prefHeight="26.0" prefWidth="550.0" />
+                        <TextField fx:id="searchTextField" prefHeight="26.0" prefWidth="550.0" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#onSearch" prefHeight="26.0" prefWidth="86.0" text="Search" />
                      </children>
                   </HBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <TilePane fx:id="wallpapersTilePane" prefHeight="820.0" prefWidth="897.0" />
+                        <TilePane fx:id="wallpapersTilePane" hgap="10.0" prefHeight="820.0" prefWidth="897.0" vgap="10.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -67,6 +67,9 @@
             </VBox>
             <JFXSpinner fx:id="spinner" radius="100.0" visible="false" />
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </StackPane>
    </children>
 </VBox>

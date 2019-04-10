@@ -42,10 +42,7 @@ public class LoginController implements Initializable {
     @FXML
     private void goToRegister(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
-
-        //JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
-        //decorator.setCustomMaximize(true);
-
+        
         Scene scene = new Scene(root);
 
         Lunch.appStage.setScene(scene);
@@ -60,10 +57,13 @@ public class LoginController implements Initializable {
 
             Lunch.appStage = new Stage();
             
+            Lunch.appStage.setMinWidth(1260);
+            Lunch.appStage.setMinHeight(842);
+            
             JFXDecorator decorator = new JFXDecorator(Lunch.appStage, root);
+            decorator.setCustomMaximize(false);
 
             Scene scene = new Scene(decorator);
-
             
             Lunch.appStage.setScene(scene);
             Lunch.appStage.show();

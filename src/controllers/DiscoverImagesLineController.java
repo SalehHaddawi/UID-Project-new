@@ -8,9 +8,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -24,13 +26,16 @@ public class DiscoverImagesLineController implements Initializable {
     private Text categoryText;
     @FXML
     private HBox discoverLineHBox;
+    @FXML
+    private JFXSpinner spinner;
 
     List<String> imagesURLs;
+    ListChangeListener<Node> listener;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
-    
-    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView){
+
+    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
@@ -51,6 +56,8 @@ public class DiscoverImagesLineController implements Initializable {
     }
 
     private void createWallpapers(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
+        discoverLineHBox.getChildren().remove(spinner);
+        
         try {
             for (int i = 0; i < 4 * 2; i += 2) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Wallpaper.fxml"));

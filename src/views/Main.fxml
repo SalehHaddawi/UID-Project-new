@@ -20,7 +20,7 @@
          <children>
             <HBox prefHeight="860.0" prefWidth="1249.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="799.0" prefWidth="328.0" spacing="25.0" styleClass="black-part">
+                  <VBox alignment="TOP_CENTER" minHeight="800.0" minWidth="350.0" spacing="25.0" styleClass="black-part" HBox.hgrow="NEVER">
                      <children>
                         <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true">
                            <image>

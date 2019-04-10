@@ -3,6 +3,7 @@ package controllers;
 import Model.AppData;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
+import com.sun.javafx.binding.BindingHelperObserver;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -13,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class DiscoverController implements Initializable {
@@ -28,18 +31,27 @@ public class DiscoverController implements Initializable {
     public JFXSpinner spinner;
     @FXML
     private JFXButton loadMoreButton;
+    @FXML
+    private AnchorPane anchorePane;
+    @FXML
+    private ScrollPane scrollPane;
+    
 
-    private List<String> cats = AppData.categories;
+    private final List<String> cats = AppData.categories;
     
     int offset = 0;
     int limit = 10;
     int increaseAmount = 5;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
         Collections.shuffle(cats);
         
         loadImagesLines();
+        anchorePane.widthProperty().addListener((obs,oldV,newV)->{
+            scrollPane.setMinWidth(anchorePane.getWidth());
+        });
     }
 
     private void loadImagesLines() {
