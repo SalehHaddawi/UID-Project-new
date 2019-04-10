@@ -2,6 +2,7 @@ package controllers;
 
 import Threading.NotifyingRunnable;
 import Threading.ThreadCompleteListener;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +36,7 @@ public class DiscoverImagesLineController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
 
-    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
+    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView, JFXButton choosenImageButton) {
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
@@ -45,7 +46,7 @@ public class DiscoverImagesLineController implements Initializable {
 
         ThreadCompleteListener completeListener = (Runnable runnable) -> {
             Platform.runLater(() -> {
-                createWallpapers(choosenImageVBox, choosenImageSpinner, choosenImageView);
+                createWallpapers(choosenImageVBox, choosenImageSpinner, choosenImageView,choosenImageButton);
             });
         };
 
@@ -55,7 +56,7 @@ public class DiscoverImagesLineController implements Initializable {
         loadingURLs.start();
     }
 
-    private void createWallpapers(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
+    private void createWallpapers(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView, JFXButton choosenImageButton) {
         discoverLineHBox.getChildren().remove(spinner);
         
         try {
@@ -70,7 +71,7 @@ public class DiscoverImagesLineController implements Initializable {
 
                 w.setImageURLThumbnail(imagesURLs.get(i + 1));
 
-                w.init(choosenImageVBox, choosenImageSpinner, choosenImageView);
+                w.init(choosenImageVBox, choosenImageSpinner, choosenImageView, choosenImageButton);
 
                 discoverLineHBox.getChildren().add(root);
             }

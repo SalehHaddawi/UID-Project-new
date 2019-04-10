@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import lunch.Lunch;
 
@@ -16,44 +17,65 @@ public class MainController implements Initializable {
     @FXML
     private VBox mainVBox;
 
-    
+    enum AppPages {
+        MyWallpapers, Discover, Search
+    };
+
+    AppPages currentPage;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        try {
+            goToMyWallpapers(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    @FXML
     private void onMinimize(ActionEvent event) {
         Lunch.appStage.setIconified(true);
     }
 
-    @FXML
     private void onClose(ActionEvent event) {
         System.exit(0);
     }
 
     @FXML
-    private void goToMyWallpapers(ActionEvent event) throws IOException {
+    private void goToMyWallpapers(MouseEvent event) throws IOException {
+        if (currentPage == AppPages.MyWallpapers) {
+            return;
+        }
+
+        currentPage = AppPages.MyWallpapers;
+
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/MyWallpapers.fxml"));
         mainVBox.getChildren().add(root);
     }
 
     @FXML
-    private void goToDiscover(ActionEvent event) throws IOException {
+    private void goToDiscover(MouseEvent event) throws IOException {
+        if (currentPage == AppPages.Discover) {
+            return;
+        }
+
+        currentPage = AppPages.Discover;
+
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/Discover.fxml"));
         mainVBox.getChildren().add(root);
     }
 
     @FXML
-    private void goToSearch(ActionEvent event) throws IOException {
+    private void goToSearch(MouseEvent event) throws IOException {
+        if (currentPage == AppPages.Search) {
+            return;
+        }
+
+        currentPage = AppPages.Search;
+
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/Search.fxml"));
         mainVBox.getChildren().add(root);
-    }
-
-    @FXML
-    private void goToOptions(ActionEvent event) {
     }
 }

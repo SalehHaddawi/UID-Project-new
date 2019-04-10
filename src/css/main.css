@@ -63,3 +63,16 @@
 .scroll-pane {
     -fx-background-color:transparent;
 }
+
+.navigation-button{
+    -fx-background-color: transparent;
+}
+
+.navigation-button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #202124;
+}
+
+.active-navigation-button{
+    -fx-background-color: #202124;
+}

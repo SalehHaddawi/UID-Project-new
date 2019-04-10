@@ -1,44 +1,144 @@
 package controllers;
 
 import Model.AppData;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import utils.ImagesUtils;
 
 public class WallpaperController implements Initializable {
 
     @FXML
-    private ImageView imageView;
+    public ImageView imageView;
     @FXML
     private JFXSpinner spinner;
 
     String imageURL;
     String imageURLThumbnail;
-    
+
     VBox choosenImageVBox;
     JFXSpinner choosenImageSpinner;
     ImageView choosenImageView;
+    JFXButton choosenImageButton;
+    TilePane tilePaneParent;
+    
+    boolean inMyWallpapers = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
     }
 
-    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView) {
+    @FXML
+    private void showChoosenImage(MouseEvent event) {
+        if (event.getButton() != MouseButton.PRIMARY) {
+            return;
+        }
+
+        choosenImageVBox.setVisible(true);
+        choosenImageSpinner.setVisible(true);
+
+        AppData.choosenWallpaper = this;
+
+        choosenImageButton.setDisable(true);
+
+        Image img = new Image(imageURL, true);
+
+        img.progressProperty().addListener((obs, oldV, newV) -> {
+            if ((Double) newV == 1) {
+                choosenImageSpinner.setVisible(false);
+                choosenImageButton.setDisable(false);
+
+                Timeline timeline = new Timeline();
+
+                choosenImageView.setScaleX(0);
+                choosenImageView.setScaleY(0);
+
+                KeyFrame key1 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleXProperty(), 1));
+                KeyFrame key2 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleYProperty(), 1));
+
+                timeline.getKeyFrames().addAll(key1, key2);
+                timeline.play();
+            }
+        });
+
+        img.errorProperty().addListener((obs, oldV, newV) -> {
+            if (newV) { // something wrong happened
+                choosenImageSpinner.setVisible(false);
+                choosenImageView.setImage(imageView.getImage());
+
+                System.out.println("something wrong happened");
+            }
+        });
+
+        choosenImageView.setImage(img);
+    }
+
+    public void init(VBox choosenImageVBox, JFXSpinner choosenImageSpinner, ImageView choosenImageView, JFXButton choosenImageButton) {
+        // Create ContextMenu
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem item2 = new MenuItem("Save Image As");
+        item2.setOnAction(value -> {
+            ImagesUtils.saveImageAsToHD();
+        });
+
+        if (!inMyWallpapers) {
+            MenuItem item1 = new MenuItem("Add To My Wallpapers");
+            item1.setOnAction(value -> {
+                ImagesUtils.saveImageToHD(null);
+            });
+
+            // Add MenuItem to ContextMenu
+            contextMenu.getItems().addAll(item1, item2);
+
+        } else {
+            MenuItem item1 = new MenuItem("Remove From My Wallpapers");
+            item1.setOnAction(value -> {
+                try {
+                    removeWallpaper(tilePaneParent);
+                    
+                    Files.deleteIfExists(Paths.get(getImageURL().substring(6)));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+            
+            // Add MenuItem to ContextMenu
+            contextMenu.getItems().addAll(item1, item2);
+        }
+
+        imageView.setOnContextMenuRequested(value -> {
+            AppData.choosenWallpaper = this;
+            contextMenu.show(imageView, value.getScreenX(), value.getScreenY());
+        });
+
         this.choosenImageVBox = choosenImageVBox;
         this.choosenImageSpinner = choosenImageSpinner;
         this.choosenImageView = choosenImageView;
-        
-        
+        this.choosenImageButton = choosenImageButton;
+
         Image image = new Image(imageURLThumbnail, 200, 200, false, true, true);
 
         imageView.setImage(image);
@@ -58,41 +158,33 @@ public class WallpaperController implements Initializable {
         this.imageURLThumbnail = imageURLThumbnail;
     }
 
-    @FXML
-    private void showChoosenImage(MouseEvent event) {
-        choosenImageVBox.setVisible(true);
-        choosenImageSpinner.setVisible(true);
-        
-        AppData.choosenImageURL = imageURL;
+    public String getImageURL() {
+        return imageURL;
+    }
 
-        Image img = new Image(imageURL, true);
+    public String getImageURLThumbnail() {
+        return imageURLThumbnail;
+    }
 
-        img.progressProperty().addListener((obs, oldV, newV) -> {
-            if ((Double) newV == 1) {
-                choosenImageSpinner.setVisible(false);
-                
-                Timeline timeline = new Timeline(); 
+    public void removeWallpaper(TilePane p) {
+        imageView.setImage(null);
 
-                choosenImageView.setScaleX(0);
-                choosenImageView.setScaleY(0);
+        p.getChildren().remove(imageView.getParent());
+    }
 
-                KeyFrame key1 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleXProperty(), 1));
-                KeyFrame key2 = new KeyFrame(Duration.seconds(0.3), new KeyValue(choosenImageView.scaleYProperty(), 1));
+    public boolean isInMyWallpaper() {
+        return inMyWallpapers;
+    }
 
-                timeline.getKeyFrames().addAll(key1, key2);
-                timeline.play();
-            }
-        });
-        
-        img.errorProperty().addListener((obs, oldV, newV) -> {
-            if(newV){ // something wrong happened
-                choosenImageSpinner.setVisible(false);
-                choosenImageView.setImage(imageView.getImage());
-                
-                System.out.println("something wrong happened");
-            }
-        });
+    public void setInMyWallpaper(boolean inMyWallpaper) {
+        this.inMyWallpapers = inMyWallpaper;
+    }
 
-        choosenImageView.setImage(img);
-    }    
+    public TilePane getTilePaneParent() {
+        return tilePaneParent;
+    }
+
+    public void setTilePaneParent(TilePane tilePaneParent) {
+        this.tilePaneParent = tilePaneParent;
+    }
 }

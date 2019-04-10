@@ -24,7 +24,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="645.0" spacing="20.0" styleClass="white-part" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="USER REGISTER" textFill="#7d7c7d">
+                        <Label focusTraversable="false" text="USER REGISTER" textFill="#7d7c7d">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -106,7 +106,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button defaultButton="true" mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER">
+                              <Button defaultButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="63.0" prefWidth="155.0" styleClass="login-button" text="REGISTER">
                                  <font>
                                     <Font name="Microsoft Sans Serif" size="22.0" />
                                  </font>
@@ -120,12 +120,12 @@
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="645.0" spacing="10.0" styleClass="gray-white" VBox.vgrow="NEVER">
                      <children>
-                        <Label text="HAVE ACCOUNT?" textFill="#9d9ea1">
+                        <Label focusTraversable="false" text="HAVE ACCOUNT?" textFill="#9d9ea1">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Label>
-                        <Label layoutX="25.0" layoutY="63.0" onMouseClicked="#goToLogin" styleClass="register-label" text="LOGIN" textFill="#9d9ea1" underline="true">
+                        <Label focusTraversable="false" layoutX="25.0" layoutY="63.0" onMouseClicked="#goToLogin" styleClass="register-label" text="LOGIN" textFill="#9d9ea1" underline="true">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -141,12 +141,12 @@
                <children>
                   <HBox alignment="TOP_RIGHT">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onMinimize" styleClass="exit-button" text="-" textFill="WHITE">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#onMinimize" styleClass="exit-button" text="-" textFill="WHITE">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onClose" styleClass="exit-button" text="×" textFill="WHITE">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#onClose" styleClass="exit-button" text="×" textFill="WHITE">
                            <font>
                               <Font size="35.0" />
                            </font>

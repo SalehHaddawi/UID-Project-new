@@ -1,6 +1,7 @@
 package lunch;
 
 import Model.AppData;
+import com.jfoenix.controls.JFXDecorator;
 import utils.ResizeHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +21,11 @@ public class Lunch extends Application {
         
         System.out.println("Found " + AppData.categories.size() + " image Categories");
         
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+        
+        JFXDecorator decorator = new JFXDecorator(stage, root);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(decorator);
 
         stage.setScene(scene);
 
@@ -34,7 +37,7 @@ public class Lunch extends Application {
 
         stage.show();
 
-        ResizeHelper.addResizeListener(stage, 1000, 600, Double.MAX_VALUE, Double.MAX_VALUE);
+        ResizeHelper.addResizeListener(stage, 1000, 600, Double.MAX_VALUE, Double.MAX_VALUE);        
     }
 
     public static void main(String[] args) {

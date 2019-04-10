@@ -1,7 +1,10 @@
-/*
- * Empty Stylesheet file.
- */
+.search-textfield{
+    -fx-background-color: transparent;
+}
 
-.mainFxmlClass {
-
+.search-field{
+    -fx-border-color: #E2E0E2;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
 }

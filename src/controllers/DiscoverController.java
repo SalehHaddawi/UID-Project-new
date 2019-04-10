@@ -3,9 +3,10 @@ package controllers;
 import Model.AppData;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
-import com.sun.javafx.binding.BindingHelperObserver;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import utils.ImagesUtils;
 
 public class DiscoverController implements Initializable {
 
@@ -35,23 +37,54 @@ public class DiscoverController implements Initializable {
     private AnchorPane anchorePane;
     @FXML
     private ScrollPane scrollPane;
-    
+    @FXML
+    private JFXButton addImageToMyWallpapersButton;
+    @FXML
+    private ImageView noInternetImageView;
 
     private final List<String> cats = AppData.categories;
-    
+
     int offset = 0;
-    int limit = 10;
-    int increaseAmount = 5;
-    
+    int limit = 15;
+    int increaseAmount = 10;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {        
+    public void initialize(URL url, ResourceBundle rb) {
         Collections.shuffle(cats);
-        
-        loadImagesLines();
-        anchorePane.widthProperty().addListener((obs,oldV,newV)->{
+
+        anchorePane.widthProperty().addListener((obs, oldV, newV) -> {
             scrollPane.setMinWidth(anchorePane.getWidth());
         });
+
+        if (netIsAvailable()) {
+            categoriesVBox.getChildren().remove(noInternetImageView);
+            loadImagesLines();
+        }else{
+            loadMoreButton.setText("Try Agian");
+        }
+    }
+
+    @FXML
+    private void closeChoosenImage(ActionEvent event) {
+        choosenImageVBox.setVisible(false);
+        spinner.setVisible(false);
+    }
+
+    @FXML
+    private void addImageToMyWallappers(ActionEvent event) {
+        choosenImageVBox.setVisible(false);
+
+        ImagesUtils.saveImageToHD(null);
+    }
+
+    @FXML
+    private void onLoadMoreCategories(ActionEvent event) {
+        if (netIsAvailable()) {
+            categoriesVBox.getChildren().remove(noInternetImageView);
+            loadImagesLines();
+        }else{
+            loadMoreButton.setText("Try Agian");
+        }
     }
 
     private void loadImagesLines() {
@@ -64,36 +97,34 @@ public class DiscoverController implements Initializable {
 
                 DiscoverImagesLineController d = loader.<DiscoverImagesLineController>getController();
 
-                d.init(choosenImageVBox, spinner, choosenImageView);
-                
+                d.init(choosenImageVBox, spinner, choosenImageView, addImageToMyWallpapersButton);
+
                 d.setCategory(cats.get(i));
 
                 categoriesVBox.getChildren().add(root);
             }
-            
+
             offset += i - offset;
-            
+
             limit += increaseAmount;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         loadMoreButton.toFront();
     }
 
-    @FXML
-    private void closeChoosenImage(ActionEvent event) {
-        choosenImageVBox.setVisible(false);
-        spinner.setVisible(false);
-    }
-
-    @FXML
-    private void addImageToMyWallappers(ActionEvent event) {
-        AppData.userURLs.add(AppData.choosenImageURL);
-    }
-
-    @FXML
-    private void onLoadMoreCategories(ActionEvent event) {
-        loadImagesLines();        
+    private static boolean netIsAvailable() {
+        try {
+            final URL url = new URL("http://www.google.com");
+            final URLConnection conn = url.openConnection();
+            conn.connect();
+            conn.getInputStream().close();
+            return true;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
