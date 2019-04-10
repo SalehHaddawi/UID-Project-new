@@ -8,3 +8,6 @@
     -fx-border-style: solid;
     -fx-border-radius: 5px;
 }
+.search-field-error{
+    -fx-border-color: #cc0000;
+}

@@ -9,24 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 
 public class ImagesUtils {
-
-    private static void tryDownload(String imageURL, String imageThumbnail) {
-        try {
-            download(imageURL, null);
-        } catch (IOException e) {
-            try {
-                download(imageThumbnail, null);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 
     private static void tryDownload(String imageURL, String imageThumbnail, String path) {
         try {
@@ -109,6 +98,20 @@ public class ImagesUtils {
 
         if (file != null) {
             ImagesUtils.saveImageToHD(file.getAbsolutePath());
+        }
+    }
+    
+    public static boolean isNetAvailable() {
+        try {
+            final URL url = new URL("http://www.google.com");
+            final URLConnection conn = url.openConnection();
+            conn.connect();
+            conn.getInputStream().close();
+            return true;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return false;
         }
     }
 }

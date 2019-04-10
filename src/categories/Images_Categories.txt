@@ -2,6 +2,8 @@ Barns and Farms
 Greenhouses 
 Sheds 
 Silos 
+War
+Rockets
 Wineries 
 Architectural Details 
 Altars 
@@ -15,6 +17,7 @@ Smoke Stacks
 Cloisters 
 Columns 
 Corridors 
+Monsters
 Courtyards 
 Decorative Pools 
 Domes 
@@ -36,7 +39,9 @@ Tumulus
 Walls 
 Water Wheels 
 Windows 
+Dinosaur
 Architectural Materials 
+Food
 Adobe Buildings 
 Brick Buildings 
 Concrete Buildings 
@@ -62,7 +67,10 @@ Neo Classical Architecture
 Pueblo Architecture 
 Renaissance Architecture 
 Roman Architecture 
-Romanesque Architecture 
+Romanesque Architecture
+Classic
+Neon
+Tech
 Victorian Architecture 
 Bridges 
 Aqueducts 
@@ -72,11 +80,17 @@ Covered Bridges
 Footbridges 
 Mobile Bridges 
 Stone Bridges 
+Super Amazing
+Wonderfull
 Suspension Bridges 
 Wooden Bridges 
 Buildings in the distance 
 Historic Buildings 
 Bathhouses 
+Modern
+WW2
+WW1
+Cold
 Belfries 
 Capitols and Parliaments 
 Castles 
@@ -131,6 +145,8 @@ Casinos
 Commercial Buildings 
 Conservatories of Flowers 
 Fire Lookouts 
+Fire Storm
+
 High Rise Buildings 
 Hotels 
 Mountain Huts 
@@ -213,14 +229,18 @@ Shopping Districts
 Shopping Malls 
 Stores 
 Street Vending 
+End of the world
 Commercial Fishing 
 Communications 
 Energy 
+
 Dams 
 Petroleum Industry 
 Power Lines 
 Power Plants 
 Wind Power 
+New
+
 Food 
 Bakeries 
 Food Close Ups 

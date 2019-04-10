@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -9,14 +11,23 @@
 
 <VBox minHeight="250.0" prefHeight="200.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DiscoverImagesLineController">
    <children>
-      <Text fx:id="categoryText" strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE" VBox.vgrow="NEVER">
-         <font>
-            <Font size="40.0" />
-         </font>
+      <HBox alignment="CENTER_LEFT" spacing="30.0" VBox.vgrow="NEVER">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" />
          </VBox.margin>
-      </Text>
+         <children>
+            <Text fx:id="categoryText" strokeType="OUTSIDE" strokeWidth="0.0" text="NATURE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="refreshCategoryButton" buttonType="RAISED" onAction="#refreshCategoryWallpapers" prefHeight="39.0" prefWidth="20.0" ripplerFill="TRANSPARENT" text=" ">
+               <graphic>
+                  <FontAwesomeIcon iconName="REFRESH" size="2.5em" translateX="5.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
       <HBox fx:id="discoverLineHBox" alignment="CENTER" prefHeight="200.0" prefWidth="782.0" spacing="20.0">
          <children>
             <JFXSpinner fx:id="spinner" radius="50.0" />
