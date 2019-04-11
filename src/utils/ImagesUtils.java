@@ -12,31 +12,42 @@ import java.io.PushbackInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import javafx.application.Platform;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 
 public class ImagesUtils {
+    
+    static boolean lastOperation;
 
-    private static void tryDownload(String imageURL, String imageThumbnail, String path) {
+    private static boolean tryDownload(String imageURL, String imageThumbnail, String path) {
         try {
             download(imageURL, path);
+            return true;
         } catch (IOException e) {
             try {
                 download(imageThumbnail, path);
+                return true;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
+        
+        return false;
     }
 
     private static void download(String imageURL, String path) throws IOException {
+        InputStream urlStream = null;
+        PushbackInputStream pushUrlStream = null;
+        ByteArrayInputStream bais = null;
+
         try {
             URL url = new URL(imageURL);
 
             int pushbackLimit = 100;
 
-            InputStream urlStream = url.openStream();
-            PushbackInputStream pushUrlStream = new PushbackInputStream(urlStream, pushbackLimit);
+            urlStream = url.openStream();
+            pushUrlStream = new PushbackInputStream(urlStream, pushbackLimit);
             byte[] firstBytes = new byte[pushbackLimit];
             // download the first initial bytes into a byte array, which we will later pass to 
             // URLConnection.guessContentTypeFromStream  
@@ -48,9 +59,9 @@ public class ImagesUtils {
             String imageType = null;
             // Pass the initial bytes to URLConnection.guessContentTypeFromStream in the form of a
             // ByteArrayInputStream, which is mark supported.
-            ByteArrayInputStream bais = new ByteArrayInputStream(firstBytes);
+            bais = new ByteArrayInputStream(firstBytes);
             String mimeType = URLConnection.guessContentTypeFromStream(bais);
-            if (mimeType.startsWith("image/")) {
+            if (mimeType != null && mimeType.startsWith("image/")) {
                 imageType = mimeType.substring("image/".length());
             } else {
                 throw new IOException("Can't get Image type");
@@ -65,6 +76,16 @@ public class ImagesUtils {
             ImageIO.write(inputImage, imageType, outputImage);
         } catch (IOException e) {
             throw e;
+        } finally {
+            if (urlStream != null) {
+                urlStream.close();
+            }
+            if (pushUrlStream != null) {
+                pushUrlStream.close();
+            }
+            if (bais != null) {
+                bais.close();
+            }
         }
     }
 
@@ -72,11 +93,19 @@ public class ImagesUtils {
         NotifyingRunnable run = new NotifyingRunnable() {
             @Override
             public void doRun() {
-                tryDownload(AppData.choosenWallpaper.getImageURL(), AppData.choosenWallpaper.getImageURLThumbnail(),path);
+                lastOperation = tryDownload(AppData.choosenWallpaper.getImageURL(), AppData.choosenWallpaper.getImageURLThumbnail(), path);
             }
         };
 
         ThreadCompleteListener listener = (Runnable runnable) -> {
+            Platform.runLater(() -> {
+                if(lastOperation){
+                String message = path == null ? "Wallpaper Added Seccussfully" : "Wallpaper saved Successfully";
+                Toast.makeText(lunch.Lunch.appStage, message, 500);
+                }else{
+                    Toast.makeText(lunch.Lunch.appStage, "Couldn't Complete Operation!", 500);
+                }
+            });
             System.out.println("Image Saved");
         };
 
@@ -85,13 +114,13 @@ public class ImagesUtils {
         Thread saveImagesToHDThread = new Thread(run);
         saveImagesToHDThread.start();
     }
-    
-    public static void saveImageAsToHD(){
+
+    public static void saveImageAsToHD() {
         //Show save file dialog
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter for text files
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png","*.jpeg","*.jpg","*.gif","*.tif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpeg", "*.jpg", "*.gif", "*.tif");
         fileChooser.getExtensionFilters().add(extFilter);
 
         File file = fileChooser.showSaveDialog(lunch.Lunch.appStage);
@@ -100,7 +129,7 @@ public class ImagesUtils {
             ImagesUtils.saveImageToHD(file.getAbsolutePath());
         }
     }
-    
+
     public static boolean isNetAvailable() {
         try {
             final URL url = new URL("http://www.google.com");

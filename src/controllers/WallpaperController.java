@@ -8,14 +8,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -26,6 +23,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import utils.ImagesUtils;
+import utils.Toast;
 
 public class WallpaperController implements Initializable {
 
@@ -42,7 +40,7 @@ public class WallpaperController implements Initializable {
     ImageView choosenImageView;
     JFXButton choosenImageButton;
     TilePane tilePaneParent;
-    
+
     boolean inMyWallpapers = false;
 
     @Override
@@ -88,6 +86,7 @@ public class WallpaperController implements Initializable {
                 choosenImageSpinner.setVisible(false);
                 choosenImageView.setImage(imageView.getImage());
 
+                Toast.makeText(lunch.Lunch.appStage, "Couldn't load Image With Full Resolution!", 500);
                 System.out.println("something wrong happened");
             }
         });
@@ -117,14 +116,19 @@ public class WallpaperController implements Initializable {
             MenuItem item1 = new MenuItem("Remove From My Wallpapers");
             item1.setOnAction(value -> {
                 try {
-                    removeWallpaper(tilePaneParent);
-                    
-                    Files.deleteIfExists(Paths.get(getImageURL().substring(6)));
+                    if (Toast.showConfirmation()) {
+
+                        removeWallpaper(tilePaneParent);
+
+                        Files.deleteIfExists(Paths.get(getImageURL().substring(6)));
+
+                        Toast.makeText(lunch.Lunch.appStage, "Wallpaper Removed Succssfully", 1500);
+                    }
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             });
-            
+
             // Add MenuItem to ContextMenu
             contextMenu.getItems().addAll(item1, item2);
         }

@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -16,14 +17,24 @@
    <children>
       <VBox>
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0">
-               <content>
-                  <TilePane fx:id="wallpapersTilePane" hgap="10.0" prefHeight="820.0" prefWidth="897.0" vgap="10.0">
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding></TilePane>
-               </content>
-            </ScrollPane>
+            <StackPane>
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="822.0" prefWidth="900.0">
+                     <content>
+                        <TilePane fx:id="wallpapersTilePane" hgap="10.0" prefHeight="820.0" prefWidth="897.0" vgap="10.0">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </TilePane>
+                     </content>
+                  </ScrollPane>
+                  <ImageView fx:id="noWallpaperFoundIMageView" fitHeight="690.0" fitWidth="828.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/my-wallpapers-are-empty.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
          </children>
       </VBox>
       <VBox fx:id="choosenImageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="895.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">

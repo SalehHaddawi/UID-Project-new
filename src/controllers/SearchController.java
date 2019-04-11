@@ -125,6 +125,7 @@ public class SearchController implements Initializable {
     @FXML
     private void closeChoosenImage(ActionEvent event) {
         choosenImageVBox.setVisible(false);
+        spinner.setVisible(false);
     }
 
     @FXML

@@ -27,7 +27,7 @@
                         <Insets left="10.0" top="20.0" />
                      </padding>
                      <children>
-                        <HBox alignment="CENTER_LEFT" onMouseClicked="#goToMyWallpapers" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
+                        <HBox fx:id="myWallpapersHBox" alignment="CENTER_LEFT" onMouseClicked="#goToMyWallpapers" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
                            <children>
                               <FontAwesomeIcon fill="WHITE" iconName="IMAGE" size="3em" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="MY WALLPAPERS">
@@ -40,7 +40,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="388.0" onMouseClicked="#goToDiscover" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
+                        <HBox fx:id="discoverHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="388.0" onMouseClicked="#goToDiscover" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
                            <children>
                               <FontAwesomeIcon fill="WHITE" iconName="COMPASS" size="3.8em" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Discover">
@@ -53,7 +53,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="432.0" onMouseClicked="#goToSearch" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
+                        <HBox fx:id="searchHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="432.0" onMouseClicked="#goToSearch" prefHeight="90.0" prefWidth="340.0" spacing="30.0" styleClass="navigation-button">
                            <children>
                               <FontAwesomeIcon fill="WHITE" iconName="SEARCH" size="3.8em" text="" />
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">

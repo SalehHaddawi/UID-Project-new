@@ -7,16 +7,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lunch.Lunch;
-import utils.Toast;
 
 public class MainController implements Initializable {
 
     @FXML
     private VBox mainVBox;
+    @FXML
+    private HBox myWallpapersHBox;
+    @FXML
+    private HBox discoverHBox;
+    @FXML
+    private HBox searchHBox;
 
     enum AppPages {
         MyWallpapers, Discover, Search
@@ -33,14 +40,6 @@ public class MainController implements Initializable {
         }
     }
 
-    private void onMinimize(ActionEvent event) {
-        Lunch.appStage.setIconified(true);
-    }
-
-    private void onClose(ActionEvent event) {
-        System.exit(0);
-    }
-
     @FXML
     private void goToMyWallpapers(MouseEvent event) throws IOException {
         if (currentPage == AppPages.MyWallpapers) {
@@ -48,6 +47,8 @@ public class MainController implements Initializable {
         }
 
         currentPage = AppPages.MyWallpapers;
+
+        makeActive(event != null ? event.getSource() : null);
 
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/MyWallpapers.fxml"));
@@ -62,6 +63,8 @@ public class MainController implements Initializable {
 
         currentPage = AppPages.Discover;
 
+        makeActive(event.getSource());
+
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/Discover.fxml"));
         mainVBox.getChildren().add(root);
@@ -75,8 +78,45 @@ public class MainController implements Initializable {
 
         currentPage = AppPages.Search;
 
+        makeActive(event.getSource());
+
         mainVBox.getChildren().clear();
         Parent root = FXMLLoader.load(getClass().getResource("/views/Search.fxml"));
         mainVBox.getChildren().add(root);
+    }
+
+    private void makeActive(Object source) {
+        if (source == null) {
+            if (!myWallpapersHBox.getStyleClass().contains("active-navigation-button")) {
+                myWallpapersHBox.getStyleClass().add("active-navigation-button");
+            }
+            return;
+        } else {
+            myWallpapersHBox.getStyleClass().remove("active-navigation-button");
+        }
+
+        if (source.equals(myWallpapersHBox)) {
+            if (!myWallpapersHBox.getStyleClass().contains("active-navigation-button")) {
+                myWallpapersHBox.getStyleClass().add("active-navigation-button");
+            }
+        } else {
+            myWallpapersHBox.getStyleClass().remove("active-navigation-button");
+        }
+
+        if (source.equals(discoverHBox)) {
+            if (!discoverHBox.getStyleClass().contains("active-navigation-button")) {
+                discoverHBox.getStyleClass().add("active-navigation-button");
+            }
+        } else {
+            discoverHBox.getStyleClass().remove("active-navigation-button");
+        }
+
+        if (source.equals(searchHBox)) {
+            if (!searchHBox.getStyleClass().contains("active-navigation-button")) {
+                searchHBox.getStyleClass().add("active-navigation-button");
+            }
+        } else {
+            searchHBox.getStyleClass().remove("active-navigation-button");
+        }
     }
 }
