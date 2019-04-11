@@ -22,7 +22,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import lunch.Lunch;
 import utils.GoogleImages;
+import utils.ImagesUtils;
+import utils.Toast;
 
 public class DiscoverImagesLineController implements Initializable {
 
@@ -53,6 +56,11 @@ public class DiscoverImagesLineController implements Initializable {
 
     @FXML
     private void refreshCategoryWallpapers(ActionEvent event) {
+        if(!ImagesUtils.isNetAvailable()){
+            Toast.makeText(Lunch.appStage, "Please Check Your Internet Connection", 1500);
+            return;
+        }
+        
         discoverLineHBox.getChildren().clear();
         discoverLineHBox.getChildren().add(spinner);
 
